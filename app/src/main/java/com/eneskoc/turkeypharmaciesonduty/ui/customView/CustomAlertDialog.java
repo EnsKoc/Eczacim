@@ -53,12 +53,6 @@ public class CustomAlertDialog extends Dialog {
         dialogBinding.btnPositive.setOnClickListener(listener);
     }
 
-    public void setNegativeButton(String btnText, View.OnClickListener listener) {
-        dialogBinding.btnNegative.setVisibility(View.VISIBLE);
-        dialogBinding.btnNegative.setText(btnText);
-        dialogBinding.btnNegative.setOnClickListener(listener);
-    }
-
     public void setCancelButton(String btnText, View.OnClickListener listener) {
         dialogBinding.btnCancel.setVisibility(View.VISIBLE);
         dialogBinding.btnCancel.setText(btnText);

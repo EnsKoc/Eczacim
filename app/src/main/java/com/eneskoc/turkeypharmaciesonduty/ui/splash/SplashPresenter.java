@@ -6,10 +6,10 @@ import android.net.NetworkInfo;
 
 public class SplashPresenter {
 
-    private final Listener listener;
+    private final SplashListener listener;
     private final Context context;
 
-    public SplashPresenter(Context context, Listener listener) {
+    public SplashPresenter(Context context, SplashListener listener) {
         this.context = context;
         this.listener = listener;
     }
@@ -22,11 +22,5 @@ public class SplashPresenter {
             listener.openMainPage();
         else
             listener.showNetworkErrorDialog();
-    }
-
-    interface Listener {
-        void openMainPage();
-
-        void showNetworkErrorDialog();
     }
 }

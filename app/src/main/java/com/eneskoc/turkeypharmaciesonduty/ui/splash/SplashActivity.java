@@ -11,7 +11,7 @@ import com.eneskoc.turkeypharmaciesonduty.MainActivity;
 import com.eneskoc.turkeypharmaciesonduty.R;
 import com.eneskoc.turkeypharmaciesonduty.ui.customView.CustomAlertDialog;
 
-public class SplashActivity extends AppCompatActivity implements SplashPresenter.Listener {
+public class SplashActivity extends AppCompatActivity implements SplashListener {
 
     private SplashPresenter splashPresenter;
     private CustomAlertDialog customAlertDialog;
@@ -40,7 +40,7 @@ public class SplashActivity extends AppCompatActivity implements SplashPresenter
         customAlertDialog.setTitle(R.string.no_internet_title);
         customAlertDialog.setDescription(R.string.no_internet_desc);
         customAlertDialog.setPositiveButton(getString(R.string.okay), v -> finish());
-        customAlertDialog.setNegativeButton(getString(R.string.open_internet_settings), v -> {
+        customAlertDialog.setCancelButton(getString(R.string.open_internet_settings), v -> {
             startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
             finish();
         });
