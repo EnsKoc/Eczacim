@@ -21,10 +21,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", '"https://enabiz.gov.tr"'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "BASE_URL", '"https://enabiz.gov.tr"'
+
         }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -43,5 +50,13 @@ dependencies {
 
     //Lottie
     implementation "com.airbnb.android:lottie:3.4.0"
+
+    //jsoup
+    implementation "org.jsoup:jsoup:1.13.1"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
 
 }

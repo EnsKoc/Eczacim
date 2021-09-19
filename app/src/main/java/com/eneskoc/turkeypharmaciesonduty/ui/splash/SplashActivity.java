@@ -29,7 +29,8 @@ public class SplashActivity extends AppCompatActivity implements SplashListener 
         runOnUiThread(() -> new Handler().postDelayed(() -> {
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
             finish();
-            overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right);
+            overridePendingTransition(R.anim.anim_slide_in_right,
+                     R.anim.anim_slide_out_left);
         }, 1000));
     }
 
