@@ -7,7 +7,7 @@ import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.eneskoc.turkeypharmaciesonduty.MainActivity;
+import com.eneskoc.turkeypharmaciesonduty.ui.main.MainActivity;
 import com.eneskoc.turkeypharmaciesonduty.R;
 import com.eneskoc.turkeypharmaciesonduty.ui.customView.CustomAlertDialog;
 
