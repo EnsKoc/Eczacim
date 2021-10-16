@@ -33,7 +33,7 @@ public class PharmacyAdapter extends RecyclerView.Adapter<PharmacyAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull PharmacyAdapter.ViewHolder holder, final int position) {
         PharmacyModel pharmacyObj = pharmacyModelList.get(position);
-        holder.listItemBinding.tvPharmacyName.setText(pharmacyObj.getEczaneAdi() + context.getString(R.string.pharmacy));
+        holder.listItemBinding.tvPharmacyName.setText(pharmacyObj.getEczaneAdi() + " " +context.getString(R.string.pharmacy));
         holder.listItemBinding.tvPharmacyAddress.setText(pharmacyObj.getEczaneAdres());
     }
 

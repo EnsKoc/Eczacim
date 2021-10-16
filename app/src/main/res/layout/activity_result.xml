@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -36,6 +37,51 @@
             android:lines="2"
             android:text="@string/result_header_desc"
             android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <!--Not Found-->
+    <RelativeLayout
+        android:id="@+id/lytNotFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivSearchNotFound"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:src="@drawable/ic_search_off"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvNotFound"
+            style="@style/TextBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivSearchNotFound"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="@string/not_found_title" />
+
+        <TextView
+            style="@style/TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvNotFound"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/dp_8"
+            android:gravity="center"
+            android:text="@string/not_found_message" />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -76,6 +76,8 @@ public class ResultActivity extends AppCompatActivity implements ResultListener 
             resultBinding.rvResult.setLayoutManager(linearLayoutManager);
             PharmacyAdapter customAdapter = new PharmacyAdapter(pharmacyModelList, this);
             resultBinding.rvResult.setAdapter(customAdapter);
+            if(pharmacyModelList.isEmpty())
+                resultBinding.lytNotFound.setVisibility(View.VISIBLE);
         }, 1000);
 
     }
