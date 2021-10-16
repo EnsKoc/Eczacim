@@ -13,7 +13,7 @@ public class ProvinceModel {
 
     @SerializedName("plaka")
     @Expose
-    private Integer plaka;
+    private int plaka;
 
     @SerializedName("ilceleri")
     @Expose
@@ -27,11 +27,11 @@ public class ProvinceModel {
         this.il = il;
     }
 
-    public Integer getPlaka() {
+    public int getPlaka() {
         return plaka;
     }
 
-    public void setPlaka(Integer plaka) {
+    public void setPlaka(int plaka) {
         this.plaka = plaka;
     }
 

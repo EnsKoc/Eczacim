@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/activity_margin"
-    android:background="@drawable/oval_box">
+    android:layout_margin="@dimen/activity_margin">
 
     <ImageView
         android:id="@+id/ivAlertImage"
@@ -28,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/no_network_connection" />
+        app:lottie_rawRes="@raw/network_connection_error" />
 
     <TextView
         android:id="@+id/tvTitle"
