@@ -9,21 +9,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.eneskoc.turkeypharmaciesonduty.R;
 import com.eneskoc.turkeypharmaciesonduty.databinding.ActivityResultBinding;
 import com.eneskoc.turkeypharmaciesonduty.model.PharmacyModel;
 import com.eneskoc.turkeypharmaciesonduty.model.ProvinceModel;
 import com.eneskoc.turkeypharmaciesonduty.ui.adapters.PharmacyAdapter;
+import com.eneskoc.turkeypharmaciesonduty.ui.map.MapActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultActivity extends AppCompatActivity implements ResultListener {
+public class ResultActivity extends AppCompatActivity implements ResultListener, PharmacyAdapter.PharmacyClickListener {
 
-    int cityIndexValue, districtsIndexValue;
-    private List<String> provinceList = new ArrayList<>();
-    private ActivityResultBinding resultBinding;
     private String districtsStringValue;
     private ResultPresenter resultPresenter;
+    private ActivityResultBinding resultBinding;
+    private int cityIndexValue, districtsIndexValue;
+    private final List<String> provinceList = new ArrayList<>();
+
+    private static final String LATITUDE = "LATITUDE";
+    private static final String LONGITUDE = "LONGITUDE";
+    private static final String PHARMACY_NAME = "PHARMACY_NAME";
+    private static final String CITY_INDEX_VALUE = "CITY_INDEX_VALUE";
+    private static final String DISTRICTS_INDEX_VALUE = "DISTRICTS_INDEX_VALUE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +41,14 @@ public class ResultActivity extends AppCompatActivity implements ResultListener 
         setContentView(resultBinding.getRoot());
 
         Intent intent = getIntent();
-        cityIndexValue = intent.getIntExtra("cityIndexValue", 0);
-        districtsIndexValue = intent.getIntExtra("districtsIndexValue", 0);
+        cityIndexValue = intent.getIntExtra(CITY_INDEX_VALUE, 0);
+        districtsIndexValue = intent.getIntExtra(DISTRICTS_INDEX_VALUE, 0);
 
+        resultBinding.btnBack.setOnClickListener(v -> onBackPressed());
         setSearchedData();
+
         resultPresenter.fetchDutyPharmacies(cityIndexValue, districtsStringValue);
     }
-
 
     public void setSearchedData() {
         List<ProvinceModel> provinceModels = resultPresenter.getProvinceModels();
@@ -75,10 +84,23 @@ public class ResultActivity extends AppCompatActivity implements ResultListener 
             linearLayoutManager.scrollToPosition(0);
             resultBinding.rvResult.setLayoutManager(linearLayoutManager);
             PharmacyAdapter customAdapter = new PharmacyAdapter(pharmacyModelList, this);
+            customAdapter.setOnClickListener(this);
             resultBinding.rvResult.setAdapter(customAdapter);
-            if(pharmacyModelList.isEmpty())
+            if (pharmacyModelList.isEmpty())
                 resultBinding.lytNotFound.setVisibility(View.VISIBLE);
         }, 1000);
 
+    }
+
+    @Override
+    public void onClick(int position, PharmacyModel pharmacy) {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra(LATITUDE, Double.parseDouble(pharmacy.getEnlem()));
+        intent.putExtra(LONGITUDE, Double.parseDouble(pharmacy.getBoylam()));
+        intent.putExtra(PHARMACY_NAME, pharmacy.getEczaneAdi());
+
+        startActivity(intent);
+        overridePendingTransition(R.anim.anim_slide_in_right,
+                R.anim.anim_slide_out_left);
     }
 }

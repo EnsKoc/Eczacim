@@ -54,7 +54,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginVertical="@dimen/dp_12"
             android:layout_marginEnd="@dimen/dp_24"
-            android:text="@string/more"
+            android:text="@string/location"
             android:textColor="@color/base_color"
             android:textSize="16sp"
             android:textStyle="bold" />

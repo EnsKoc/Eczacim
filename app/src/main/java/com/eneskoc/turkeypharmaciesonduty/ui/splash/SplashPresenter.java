@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 public class SplashPresenter {
 
     private final SplashListener listener;
@@ -12,6 +14,11 @@ public class SplashPresenter {
     public SplashPresenter(Context context, SplashListener listener) {
         this.context = context;
         this.listener = listener;
+        disableDarkMode();
+    }
+
+    private void disableDarkMode() {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     public void isInternetConnection() {

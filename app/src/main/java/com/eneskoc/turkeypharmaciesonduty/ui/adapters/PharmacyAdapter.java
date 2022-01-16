@@ -17,10 +17,19 @@ public class PharmacyAdapter extends RecyclerView.Adapter<PharmacyAdapter.ViewHo
 
     private final Context context;
     public List<PharmacyModel> pharmacyModelList;
+    public PharmacyClickListener pharmacyClickListener;
+
+    public interface PharmacyClickListener{
+        void onClick(int position,PharmacyModel pharmacy);
+    }
 
     public PharmacyAdapter(List<PharmacyModel> pharmacyModelList, Context context) {
         this.pharmacyModelList = pharmacyModelList;
         this.context = context;
+    }
+
+    public void setOnClickListener(PharmacyClickListener listener){
+        this.pharmacyClickListener = listener;
     }
 
     @NonNull
@@ -33,8 +42,13 @@ public class PharmacyAdapter extends RecyclerView.Adapter<PharmacyAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull PharmacyAdapter.ViewHolder holder, final int position) {
         PharmacyModel pharmacyObj = pharmacyModelList.get(position);
-        holder.listItemBinding.tvPharmacyName.setText(pharmacyObj.getEczaneAdi() + " " +context.getString(R.string.pharmacy));
+        if (!pharmacyObj.getEczaneAdi().contains("ECZANESİ"))
+            holder.listItemBinding.tvPharmacyName.setText(pharmacyObj.getEczaneAdi() + " " +context.getString(R.string.pharmacy));
+        else
+            holder.listItemBinding.tvPharmacyName.setText(pharmacyObj.getEczaneAdi());
+
         holder.listItemBinding.tvPharmacyAddress.setText(pharmacyObj.getEczaneAdres());
+        holder.itemView.setOnClickListener(v -> pharmacyClickListener.onClick(holder.getAdapterPosition(),pharmacyObj));
     }
 
     @Override
