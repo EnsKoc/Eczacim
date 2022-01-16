@@ -16,8 +16,8 @@ public class MainPresenter {
     private final Context context;
     private final MainListener listener;
     private final List<String> provinceList = new ArrayList<>();
-    private final String JSON_FILE_NAME = "turkey_provinces_and_districts.json";
     private List<ProvinceModel> provinceModels = new ArrayList<>();
+    private static final String JSON_FILE_NAME = "turkey_provinces_and_districts.json";
 
     public MainPresenter(Context context, MainListener listener) {
         this.context = context;
@@ -26,9 +26,8 @@ public class MainPresenter {
 
     public List<String> getProvince() {
         provinceModels = getProvinceModels();
-        for (int i = 0; i < provinceModels.size(); i++) {
+        for (int i = 0; i < provinceModels.size(); i++)
             provinceList.add(provinceModels.get(i).getIl());
-        }
         return provinceList;
     }
 

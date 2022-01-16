@@ -7,21 +7,23 @@ import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.eneskoc.turkeypharmaciesonduty.ui.main.MainActivity;
 import com.eneskoc.turkeypharmaciesonduty.R;
+import com.eneskoc.turkeypharmaciesonduty.databinding.ActivitySplashBinding;
 import com.eneskoc.turkeypharmaciesonduty.ui.customView.CustomAlertDialog;
+import com.eneskoc.turkeypharmaciesonduty.ui.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity implements SplashListener {
 
     private SplashPresenter splashPresenter;
-    private CustomAlertDialog customAlertDialog;
+    private ActivitySplashBinding splashBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        splashBinding = ActivitySplashBinding.inflate(getLayoutInflater());
         splashPresenter = new SplashPresenter(this, SplashActivity.this);
         splashPresenter.isInternetConnection();
+        setContentView(splashBinding.getRoot());
     }
 
     @Override
@@ -30,13 +32,13 @@ public class SplashActivity extends AppCompatActivity implements SplashListener 
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
             finish();
             overridePendingTransition(R.anim.anim_slide_in_right,
-                     R.anim.anim_slide_out_left);
+                    R.anim.anim_slide_out_left);
         }, 1000));
     }
 
     @Override
     public void showNetworkErrorDialog() {
-        customAlertDialog = new CustomAlertDialog(this);
+        CustomAlertDialog customAlertDialog = new CustomAlertDialog(this);
         customAlertDialog.showAnimation();
         customAlertDialog.setTitle(R.string.no_internet_title);
         customAlertDialog.setDescription(R.string.no_internet_desc);

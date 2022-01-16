@@ -17,14 +17,16 @@ import com.eneskoc.turkeypharmaciesonduty.ui.result.ResultActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements
-        AdapterView.OnItemSelectedListener, MainListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, MainListener {
 
-    int cityIndexValue, districtsIndexValue;
-    private List<ProvinceModel> provinceModels = new ArrayList<>();
-    private ActivityMainBinding mainBinding;
     private MainPresenter mainPresenter;
+    private ActivityMainBinding mainBinding;
     private CustomAlertDialog customAlertDialog;
+    private int cityIndexValue, districtsIndexValue;
+    private List<ProvinceModel> provinceModels = new ArrayList<>();
+
+    private static final String CITY_INDEX_VALUE = "CITY_INDEX_VALUE";
+    private static final String DISTRICTS_INDEX_VALUE = "DISTRICTS_INDEX_VALUE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,15 +77,15 @@ public class MainActivity extends AppCompatActivity implements
         customAlertDialog = new CustomAlertDialog(this);
         customAlertDialog.setTitle(R.string.selection_error_title);
         customAlertDialog.setDescription(R.string.selection_error_desc);
-        customAlertDialog.setPositiveButton(getString(R.string.okay), v -> finish());
+        customAlertDialog.setPositiveButton(getString(R.string.okay), v -> customAlertDialog.dismiss());
         customAlertDialog.show();
     }
 
     @Override
     public void openResultPage() {
         Intent intent = new Intent(this, ResultActivity.class);
-        intent.putExtra("cityIndexValue", cityIndexValue);
-        intent.putExtra("districtsIndexValue", districtsIndexValue);
+        intent.putExtra(CITY_INDEX_VALUE, cityIndexValue);
+        intent.putExtra(DISTRICTS_INDEX_VALUE, districtsIndexValue);
 
         startActivity(intent);
         overridePendingTransition(R.anim.anim_slide_in_right,
