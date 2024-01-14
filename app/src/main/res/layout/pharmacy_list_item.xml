@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/dp_12"
     android:paddingTop="@dimen/dp_12">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lytPharmacyItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,47 +19,48 @@
             android:id="@+id/ivPharmacyLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/dp_16"
-            android:layout_marginEnd="@dimen/dp_16"
-            android:src="@drawable/ic_duty_pharmacy" />
+            android:layout_margin="@dimen/dp_16"
+            android:src="@drawable/ic_duty_pharmacy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvPharmacyName"
             style="@style/TextBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/ivPharmacyLogo"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/dp_16"
-            android:layout_toEndOf="@+id/ivPharmacyLogo"
-            android:textColor="@color/base_color" />
+            android:textColor="@color/base_color"
+            app:layout_constraintStart_toEndOf="@id/ivPharmacyLogo"
+            app:layout_constraintTop_toTopOf="@id/ivPharmacyLogo"
+            tool:text="TEST ECZANESİ" />
 
         <TextView
             android:id="@+id/tvPharmacyAddress"
             style="@style/TextMedium"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvPharmacyName"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="@dimen/dp_12"
-            android:layout_toEndOf="@+id/ivPharmacyLogo"
-            android:lineSpacingExtra="1sp" />
+            app:layout_constrainedWidth="true"
+            android:layout_marginBottom="@dimen/dp_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvLocation"
+            app:layout_constraintStart_toEndOf="@id/ivPharmacyLogo"
+            app:layout_constraintTop_toBottomOf="@id/tvPharmacyName"
+            tool:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
 
         <TextView
+            android:id="@+id/tvLocation"
             style="@style/TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvPharmacyAddress"
-            android:layout_alignParentEnd="true"
-            android:layout_marginVertical="@dimen/dp_12"
-            android:layout_marginEnd="@dimen/dp_24"
+            android:layout_margin="@dimen/dp_12"
             android:text="@string/location"
             android:textColor="@color/base_color"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

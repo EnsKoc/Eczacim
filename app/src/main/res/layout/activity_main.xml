@@ -7,7 +7,7 @@
     tools:context=".ui.main.MainActivity">
 
     <!--Header-->
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lytHeader"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -19,6 +19,10 @@
 
         <ImageView
             android:id="@+id/eczacimIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -30,16 +34,19 @@
             style="@style/TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/eczacimIcon"
             android:layout_below="@id/eczacimIcon"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginHorizontal="@dimen/dp_24"
-            android:layout_marginTop="@dimen/dp_24"
             android:gravity="center"
             android:lines="2"
+            android:lineSpacingExtra="0dp"
             android:text="@string/app_slogan"
             android:textColor="@color/white" />
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Spinner
         android:id="@+id/spinnerCity"

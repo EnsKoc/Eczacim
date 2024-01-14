@@ -1,6 +1,7 @@
 package com.eneskoc.turkeypharmaciesonduty.ui.result;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,7 +15,6 @@ import com.eneskoc.turkeypharmaciesonduty.databinding.ActivityResultBinding;
 import com.eneskoc.turkeypharmaciesonduty.model.PharmacyModel;
 import com.eneskoc.turkeypharmaciesonduty.model.ProvinceModel;
 import com.eneskoc.turkeypharmaciesonduty.ui.adapters.PharmacyAdapter;
-import com.eneskoc.turkeypharmaciesonduty.ui.map.MapActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,11 +94,9 @@ public class ResultActivity extends AppCompatActivity implements ResultListener,
 
     @Override
     public void onClick(int position, PharmacyModel pharmacy) {
-        Intent intent = new Intent(this, MapActivity.class);
-        intent.putExtra(LATITUDE, Double.parseDouble(pharmacy.getEnlem()));
-        intent.putExtra(LONGITUDE, Double.parseDouble(pharmacy.getBoylam()));
-        intent.putExtra(PHARMACY_NAME, pharmacy.getEczaneAdi());
-
+        String strUri = "http://maps.google.com/maps?q=loc:" + pharmacy.getEnlem() + "," + pharmacy.getBoylam() + " (" + pharmacy.getEczaneAdi() + "ECZANESİ"+ ")";
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
+        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
         startActivity(intent);
         overridePendingTransition(R.anim.anim_slide_in_right,
                 R.anim.anim_slide_out_left);
